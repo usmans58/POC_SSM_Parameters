@@ -27,14 +27,7 @@ def fetch_parameters_from_ew1_by_prefix(prefix):
     response_ew1 = ssm_client_ew1.get_parameters_by_path(
         Path='/',
         Recursive=True,
-        WithDecryption=True,
-        ParameterFilters=[
-            {
-                'Key': 'Name',
-                'Option': 'BeginsWith',
-                'Values': [prefix]
-            }
-        ]
+        WithDecryption=True
     )
     for param in response_ew1['Parameters']:
         parameters[param['Name']] = param['Value']
